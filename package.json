@@ -1,0 +1,29 @@
+{
+  "name": "amitbadass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "local": "node make.js stylesheets:watch & node make.js scripts:watch & node make.js server:watch",
+    "postinstall": "bower install && node make.js stylesheets:build && node make.js scripts:build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.5.2",
+    "browserify": "^11.0.1",
+    "clean-css": "^3.4.1",
+    "express": "^4.13.3",
+    "nunjucks": "^2.0.0",
+    "shelljs": "^0.5.3",
+    "uglifyify": "^3.0.1",
+    "watchify": "^3.4.0",
+    "nodemon": "^1.4.1"
+  },
+  "devDependencies": {
+  },
+  "engine": {
+    "node": ">=4.0.0"
+  }
+}

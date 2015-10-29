@@ -1,0 +1,28 @@
+body:before {
+  content: 'base (< 35 rem)';
+  background-color: #ccc;
+  color: #333;
+  padding: 4px 6px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+}
+
+@media screen and (min-width: 35rem) {
+  body:before {
+    content: 'small (35 - 45 rem)';
+  }
+}
+
+@media screen and (min-width: 45em) {
+  body:before {
+    content: 'medium (45 - 55 rem)';
+  }
+}
+
+@media screen and (min-width: 55em) {
+  body:before {
+    content: 'large (> 55 rem)';
+  }
+}
