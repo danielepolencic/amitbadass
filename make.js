@@ -32,54 +32,19 @@ target['stylesheets:watch'] = function () {
   target['stylesheets:build'](true);
 };
 
-
-var browserify = require('browserify');
-var watchify = require('watchify');
-
-target['scripts:build'] = function () {
-  browserify({
-    entries: ['./assets/scripts/main.js'],
-    debug: false
-  })
-  .require('./assets/scripts/ga.js', {expose: 'ga'})
-  .transform({sourcemap: false, global: true}, 'uglifyify')
-  .bundle()
-  .pipe(fs.createWriteStream('assets/bundle.js'));
+target['setup'] = function() {
+  rm('-rf', 'dist');
+  mkdir('-p', 'dist');
 };
 
-target['scripts:watch'] = function () {
-  var bundle = browserify({
-    entries: ['./assets/scripts/main.js'],
-    debug: true,
-    cache: {},
-    packageCache: {}
-  });
+target['copy'] = function() {
+  cp('-r', 'assets', 'dist');
+  cp('-r', 'views/layout.html', 'dist');
+  mv('dist/layout.html', 'dist/index.html');
+}
 
-  var js = watchify(bundle)
-  .on('update', function () {
-    console.info('[js:watch]');
-    js.bundle().pipe(fs.createWriteStream('assets/bundle.js'));
-  });
-
-  bundle.require('./assets/scripts/ga.js', {expose: 'ga'});
-
-  js.bundle()
-  .pipe(fs.createWriteStream('assets/bundle.js'));
-};
-
-
-var nodemon = require('nodemon');
-
-target['server:watch'] = function () {
-  nodemon({
-    script: 'index.js',
-    ext: 'js json'
-  })
-  .on('restart', function () {
-    console.log('Server restarted');
-  });
-};
-
-target['server:run'] = function () {
-  exec('node index.js');
+target['build'] = function () {
+  target['setup']();
+  target['stylesheets:build'](false);
+  target['copy']();
 };

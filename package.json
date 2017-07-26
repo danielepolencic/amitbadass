@@ -1,28 +1,22 @@
 {
   "name": "amitbadass",
   "version": "1.0.0",
-  "description": "",
+  "description": "Amit is a badass",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "local": "node make.js stylesheets:watch & node make.js scripts:watch & node make.js server:watch",
-    "postinstall": "bower install && node make.js stylesheets:build && node make.js scripts:build"
+    "start": "http-server dist",
+    "watch": "node make.js stylesheets:watch",
+    "build": "node make.js build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Daniele Polencic <daniele.polencic@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "bower": "^1.5.2",
-    "browserify": "^11.0.1",
     "clean-css": "^3.4.1",
-    "express": "^4.13.3",
-    "nunjucks": "^2.0.0",
-    "shelljs": "^0.5.3",
-    "uglifyify": "^3.0.1",
-    "watchify": "^3.4.0",
-    "nodemon": "^1.4.1"
+    "http-server": "^0.10.0",
+    "normalize-css": "normalize.css#~3.0.3",
+    "shelljs": "^0.5.3"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engine": {
     "node": ">=4.0.0"
   }
