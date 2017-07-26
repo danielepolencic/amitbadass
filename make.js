@@ -66,20 +66,3 @@ target['scripts:watch'] = function () {
   js.bundle()
   .pipe(fs.createWriteStream('assets/bundle.js'));
 };
-
-
-var nodemon = require('nodemon');
-
-target['server:watch'] = function () {
-  nodemon({
-    script: 'index.js',
-    ext: 'js json'
-  })
-  .on('restart', function () {
-    console.log('Server restarted');
-  });
-};
-
-target['server:run'] = function () {
-  exec('node index.js');
-};
